@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestingIntentAdvanced</string>
+    <string name="text_launch_camera">Launch camera</string>
+
 </resources>
