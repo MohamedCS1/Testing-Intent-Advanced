@@ -8,11 +8,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import com.example.testingintentadvanced.ImageViewHasDrawableMatcher.hasDrawable
+import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,6 +33,7 @@ internal class MainActivityTest{
         val expectedIntent = hasAction(MediaStore.ACTION_IMAGE_CAPTURE)
         intending(expectedIntent).respondWith(activityResult)
 
+        onView(withId(R.id.mainImageView)).check(matches(not(hasDrawable())))
         onView(withId(R.id.buttonLaunchCamera)).perform(click())
         intending(expectedIntent)
     }
